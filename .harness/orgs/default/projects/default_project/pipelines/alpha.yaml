@@ -26,10 +26,8 @@ pipeline:
             os: Linux
             arch: Amd64
           runtime:
-            type: Cloud
-            spec:
-              imageSpec:
-                imageName: node:22
+            type: Docker
+            spec: {}
           execution:
             steps:
               - step:
