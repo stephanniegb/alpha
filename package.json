@@ -1,0 +1,30 @@
+{
+  "name": "learning-with-nx",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "nx run-many -t serve",
+    "dev:one": "pnpm --filter @repo/website-one dev",
+    "dev:two": "pnpm --filter @repo/website-two dev",
+    "build": "pnpm --filter './apps/*' build",
+    "lint": "pnpm --filter './apps/*' lint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@nx/eslint": "22.7.5",
+    "@nx/vite": "22.7.5",
+    "@nx/web": "22.7.5",
+    "@vitest/ui": "~4.1.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "jiti": "2.4.2",
+    "nx": "22.7.5",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.0",
+    "vitest": "~4.1.0"
+  },
+  "dependencies": {}
+}

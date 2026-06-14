@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/website-one" },
+    { "path": "./apps/website-two" },
+    { "path": "./packages/shared-utils" }
+  ]
+}

@@ -1,0 +1,139 @@
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.25rem;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* 6-column grid on wide, 4 on mid, 3 on small */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.letter-card {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.12s, background 0.12s, color 0.12s;
+  user-select: none;
+}
+
+.letter-card:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.letter-card.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+/* Detail panel */
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  animation: slide-in 0.2s ease;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-letter {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  min-width: 1.2em;
+  text-align: center;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.detail-phonetic {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+}
+
+.detail-word {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.detail-word-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border-radius: 6px;
+  font-weight: 700;
+  margin-right: 0.1em;
+}
+
+.detail-example {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .detail {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+}
