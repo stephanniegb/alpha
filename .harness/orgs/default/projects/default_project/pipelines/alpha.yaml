@@ -1,0 +1,55 @@
+pipeline:
+  name: alpha
+  identifier: alpha
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: alpha
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install Dependencies
+                  identifier: Install_Dependencies
+                  spec:
+                    shell: Sh
+                    command: |-
+                      corepack enable
+                      pnpm install --frozen-lockfile
+              - step:
+                  type: Run
+                  name: Show Projects
+                  identifier: Show_Projects
+                  spec:
+                    shell: Sh
+                    command: pnpm nx show projects
+              - step:
+                  type: Run
+                  name: Build Affected
+                  identifier: Build_Affected
+                  spec:
+                    shell: Sh
+                    command: pnpm nx affected -t build --base=HEAD~1 --head=HEAD
