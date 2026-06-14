@@ -63,11 +63,12 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      echo "=== Enable Corepack ==="
-                      corepack enable
+                      echo "=== Current Versions ==="
+                      node --version
+                      npm --version
 
                       echo "=== Install PNPM 9 ==="
-                      corepack prepare pnpm@9 --activate
+                      npm install -g pnpm@9
 
                       echo "=== PNPM Version ==="
                       pnpm --version
