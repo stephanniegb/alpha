@@ -32,24 +32,64 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Install Dependencies
-                  identifier: Install_Dependencies
+                  name: Setup
+                  identifier: Setup
                   spec:
                     shell: Sh
-                    command: |-
+                    command: |
+                      echo "=== Environment ==="
+                      node --version
+
+                      echo "=== Enable pnpm ==="
                       corepack enable
+
+                      echo "=== PNPM Version ==="
+                      pnpm --version
+              - step:
+                  type: Run
+                  name: InstallDependencies
+                  identifier: InstallDependencies
+                  spec:
+                    shell: Sh
+                    command: |
+                      echo "=== Installing Dependencies ==="
                       pnpm install --frozen-lockfile
               - step:
                   type: Run
-                  name: Show Projects
-                  identifier: Show_Projects
+                  name: GitDebug
+                  identifier: GitDebug
                   spec:
                     shell: Sh
-                    command: pnpm nx show projects
+                    command: |
+                      echo "=== Branch ==="
+                      git branch
+
+                      echo "=== Recent Commits ==="
+                      git log --oneline -5
               - step:
                   type: Run
-                  name: Build Affected
-                  identifier: Build_Affected
+                  name: ShowProjects
+                  identifier: ShowProjects
                   spec:
                     shell: Sh
-                    command: pnpm nx affected -t build --base=HEAD~1 --head=HEAD
+                    command: |
+                      echo "=== Nx Projects ==="
+                      pnpm nx show projects
+              - step:
+                  type: Run
+                  name: ShowAffected
+                  identifier: ShowAffected
+                  spec:
+                    shell: Sh
+                    command: |
+                      echo "=== Affected Projects ==="
+                      pnpm nx show projects --affected --base=HEAD~1 --head=HEAD
+              - step:
+                  type: Run
+                  name: BuildAffected
+                  identifier: BuildAffected
+                  spec:
+                    shell: Sh
+                    command: |
+                      echo "=== Building Affected Projects ==="
+                      pnpm nx affected -t build --base=HEAD~1 --head=HEAD
