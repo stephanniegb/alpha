@@ -27,7 +27,9 @@ pipeline:
             arch: Amd64
           runtime:
             type: Cloud
-            spec: {}
+            spec:
+              imageSpec:
+                imageName: node:22
           execution:
             steps:
               - step:
