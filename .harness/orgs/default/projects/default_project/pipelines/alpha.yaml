@@ -62,8 +62,17 @@ pipeline:
                   identifier: InstallDependencies
                   spec:
                     shell: Sh
-                    command: |
-                      echo "=== Installing Dependencies ==="
+                    command: |-
+                      echo "=== Enable Corepack ==="
+                      corepack enable
+
+                      echo "=== Install PNPM 9 ==="
+                      corepack prepare pnpm@9 --activate
+
+                      echo "=== PNPM Version ==="
+                      pnpm --version
+
+                      echo "=== Install Dependencies ==="
                       pnpm install --frozen-lockfile
               - step:
                   type: Run
