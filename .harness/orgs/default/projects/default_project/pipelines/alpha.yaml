@@ -47,6 +47,17 @@ pipeline:
                       pnpm --version
               - step:
                   type: Run
+                  name: Check PNPM
+                  identifier: Check_PNPM
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo "=== Lockfile Version ==="
+                      grep lockfileVersion pnpm-lock.yaml || true
+                      echo "=== PNPM Version ==="
+                      pnpm --version
+              - step:
+                  type: Run
                   name: InstallDependencies
                   identifier: InstallDependencies
                   spec:
